@@ -1,0 +1,113 @@
+# ─────────────────────────────────────────────────────────────────────────────
+# .github/workflows/deploy.yml
+# GitHub Actions workflow – build and deploy to Google Cloud Run
+#
+# Required repository secrets (Settings → Secrets → Actions):
+#   GCP_PROJECT_ID        – Your Google Cloud project ID
+#   GCP_SA_KEY            – Base64-encoded JSON key for a GCP Service Account
+#                           with roles: Cloud Run Admin, Storage Admin,
+#                           Service Account User, Secret Manager Accessor
+#   GEMINI_API_KEY        – Google Gemini API key
+#
+# Optional repository variables (Settings → Variables → Actions):
+#   GCP_REGION            – GCP region (default: us-central1)
+#   CLOUD_RUN_SERVICE     – Cloud Run service name (default: ridhi-command-center)
+# ─────────────────────────────────────────────────────────────────────────────
+name: Deploy to Cloud Run
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch: {}   # Allow manual trigger from the Actions tab
+
+env:
+  REGION:       ${{ vars.GCP_REGION       || 'us-central1' }}
+  SERVICE_NAME: ${{ vars.CLOUD_RUN_SERVICE || 'ridhi-command-center' }}
+
+jobs:
+  deploy:
+    name: Build & Deploy
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write   # Required for Workload Identity Federation (optional)
+
+    steps:
+      # ── 1. Checkout source ──────────────────────────────────────────────────
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # ── 2. Authenticate to Google Cloud ─────────────────────────────────────
+      - name: Authenticate to Google Cloud
+        uses: google-github-actions/auth@v2
+        with:
+          credentials_json: ${{ secrets.GCP_SA_KEY }}
+
+      # ── 3. Set up gcloud CLI ─────────────────────────────────────────────────
+      - name: Set up Cloud SDK
+        uses: google-github-actions/setup-gcloud@v2
+        with:
+          project_id: ${{ secrets.GCP_PROJECT_ID }}
+
+      # ── 4. Configure Docker to push to GCR ──────────────────────────────────
+      - name: Configure Docker for GCR
+        run: gcloud auth configure-docker --quiet
+
+      # ── 5. Store Gemini API key in Secret Manager (idempotent) ──────────────
+      - name: Upsert Gemini API key secret
+        run: |
+          PROJECT="${{ secrets.GCP_PROJECT_ID }}"
+          if gcloud secrets describe gemini-api-key --project="$PROJECT" &>/dev/null; then
+            echo "Updating existing secret version..."
+            printf '%s' "${{ secrets.GEMINI_API_KEY }}" \
+              | gcloud secrets versions add gemini-api-key --data-file=- --project="$PROJECT"
+          else
+            echo "Creating new secret..."
+            printf '%s' "${{ secrets.GEMINI_API_KEY }}" \
+              | gcloud secrets create gemini-api-key \
+                  --data-file=- \
+                  --replication-policy=automatic \
+                  --project="$PROJECT"
+          fi
+
+      # ── 6. Build the Docker image ────────────────────────────────────────────
+      - name: Build Docker image
+        run: |
+          IMAGE="gcr.io/${{ secrets.GCP_PROJECT_ID }}/${{ env.SERVICE_NAME }}"
+          docker build \
+            --tag "${IMAGE}:${{ github.sha }}" \
+            --tag "${IMAGE}:latest" \
+            .
+          echo "IMAGE=${IMAGE}" >> "$GITHUB_ENV"
+
+      # ── 7. Push to Container Registry ───────────────────────────────────────
+      - name: Push Docker image
+        run: |
+          docker push "${{ env.IMAGE }}:${{ github.sha }}"
+          docker push "${{ env.IMAGE }}:latest"
+
+      # ── 8. Deploy to Cloud Run ───────────────────────────────────────────────
+      - name: Deploy to Cloud Run
+        id: deploy
+        uses: google-github-actions/deploy-cloudrun@v2
+        with:
+          service:  ${{ env.SERVICE_NAME }}
+          image:    ${{ env.IMAGE }}:${{ github.sha }}
+          region:   ${{ env.REGION }}
+          flags: >-
+            --allow-unauthenticated
+            --port=3000
+            --memory=512Mi
+            --cpu=1
+            --min-instances=0
+            --max-instances=10
+            --timeout=300
+            --set-env-vars=NODE_ENV=production,BACKEND_PORT=8000
+            --set-secrets=GEMINI_API_KEY=gemini-api-key:latest
+
+      # ── 9. Print the deployed URL ────────────────────────────────────────────
+      - name: Service URL
+        run: |
+          echo "✅ Deployed to: ${{ steps.deploy.outputs.url }}"
+          echo "   Health check: ${{ steps.deploy.outputs.url }}/api/health"
