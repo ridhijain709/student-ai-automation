@@ -1,5 +1,7 @@
+import os
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
 from backend.db import engine, Base
 from backend.routers import gmail, telegram, linkedin, whatsapp, resume, truthgrid, dashboard
 
@@ -34,6 +36,13 @@ app.include_router(resume.router)
 app.include_router(truthgrid.router)
 app.include_router(dashboard.router)
 
+# Serve built React frontend static files in production.
+# This must come AFTER all API routers so that API routes take precedence.
+_dist_path = os.path.join(os.path.dirname(__file__), "..", "dist")
+if os.path.isdir(_dist_path):
+    app.mount("/", StaticFiles(directory=_dist_path, html=True), name="static")
+
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run(app, host="0.0.0.0", port=3000)
+

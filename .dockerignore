@@ -1,0 +1,59 @@
+# Files and directories to exclude from Docker build context.
+# Keeping the build context small speeds up image builds.
+
+# Version control
+.git
+.gitignore
+
+# Node / frontend dev artifacts
+node_modules/
+frontend/node_modules/
+dist/
+.npm
+
+# Python caches & build artifacts
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+*.egg
+*.egg-info/
+.eggs/
+build/
+.venv/
+venv/
+env/
+.env
+.env.*
+!.env.example
+
+# Test & coverage
+coverage/
+.coverage
+htmlcov/
+.pytest_cache/
+*.test.*
+
+# Editor / OS artifacts
+.DS_Store
+.idea/
+.vscode/
+*.swp
+*.swo
+Thumbs.db
+
+# CI / CD source files (not needed inside the image)
+.github/
+cloudbuild.yaml
+cloud-run-deploy.sh
+
+# Documentation (not needed inside the image)
+*.md
+DEPLOYMENT_GUIDE.md
+
+# Secrets (never bake credentials into the image)
+*.pem
+*.key
+*.cert
+secrets/
