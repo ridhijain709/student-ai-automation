@@ -1,0 +1,5 @@
+{
+  "name": "AutoFlow AI Dashboard",
+  "description": "A centralized dashboard to automate LinkedIn, WhatsApp, Telegram, and resume management tasks.",
+  "requestFramePermissions": []
+}
