@@ -46,7 +46,7 @@ docker build -t student-ai-automation:latest .
 
 # Run the container
 docker run -p 3000:3000 \
-  -e GEMINI_API_KEY=AIzaSyAiKRvzZVI4zT30It595L7vzECg47y3MKM \
+  -e GEMINI_API_KEY=your_gemini_api_key_here \
   -e NODE_ENV=production \
   student-ai-automation:latest
 
@@ -107,7 +107,7 @@ gcloud services enable secretmanager.googleapis.com
 # Create secret in Secret Manager
 gcloud secrets create gemini-api-key \
   --replication-policy="automatic" \
-  --data-file=- <<< "AIzaSyAiKRvzZVI4zT30It595L7vzECg47y3MKM"
+  --data-file=- <<< "your_gemini_api_key_here"
 
 # Grant access to Cloud Run service account
 PROJECT_NUMBER=$(gcloud projects describe gen-lang-client-0581494231 --format='value(projectNumber)')
@@ -146,7 +146,7 @@ git push origin main
 
 **Setup GitHub Secrets** (if using GitHub Actions):
 1. Go to Settings → Secrets and Variables → Actions
-2. Add: `GEMINI_API_KEY` = `AIzaSyAiKRvzZVI4zT30It595L7vzECg47y3MKM`
+2. Add: `GEMINI_API_KEY` = `your_gemini_api_key_here`
 
 ### Method 2: Cloud Build (Recommended)
 
@@ -194,7 +194,7 @@ gcloud run deploy student-ai-automation \
   --region us-central1 \
   --platform managed \
   --allow-unauthenticated \
-  --set-env-vars "GEMINI_API_KEY=AIzaSyAiKRvzZVI4zT30It595L7vzECg47y3MKM,NODE_ENV=production" \
+  --set-env-vars "GEMINI_API_KEY=your_gemini_api_key_here,NODE_ENV=production" \
   --memory 512Mi \
   --cpu 1 \
   --max-instances 10
@@ -309,7 +309,7 @@ echo "NEW_API_KEY" | gcloud secrets versions add gemini-api-key --data-file=-
 gcloud run deploy student-ai-automation \
   --image gcr.io/gen-lang-client-0581494231/student-ai-automation:latest \
   --region us-central1 \
-  --update-env-vars GEMINI_API_KEY=AIzaSyAiKRvzZVI4zT30It595L7vzECg47y3MKM
+  --update-env-vars GEMINI_API_KEY=your_gemini_api_key_here
 ```
 
 #### 4. Port Conflicts
@@ -465,7 +465,7 @@ PYTHONUNBUFFERED=1
 PORT=3000
 
 # API Keys
-GEMINI_API_KEY=AIzaSyAiKRvzZVI4zT30It595L7vzECg47y3MKM
+GEMINI_API_KEY=your_gemini_api_key_here
 
 # Database
 DATABASE_URL=sqlite:///./data/ridhi.db

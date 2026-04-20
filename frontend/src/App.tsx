@@ -18,8 +18,10 @@ export default function App() {
             <Route path="/" element={<Dashboard />} />
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/gmail" element={<GmailPage />} />
+            <Route path="/ai-query-auto-responder" element={<GmailPage />} />
             <Route path="/telegram" element={<TelegramPage />} />
             <Route path="/linkedin" element={<LinkedInPage />} />
+            <Route path="/content-calendar-auto-scheduler" element={<LinkedInPage />} />
             <Route path="/whatsapp" element={<WhatsAppPage />} />
             <Route path="/resume" element={<ResumePage />} />
             <Route path="/truthgrid" element={<TruthGridPage />} />
