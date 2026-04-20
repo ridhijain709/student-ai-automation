@@ -37,3 +37,24 @@ weaknesses (list),
 next_30_day_plan (list), 
 summary_report.
 """
+
+CONTENT_SCHEDULER_SUGGESTION_PROMPT = """
+You are helping an SME marketing manager prepare social media content.
+Improve clarity and CTA while keeping tone practical.
+Return JSON with:
+- title
+- content
+- channel_tips (list of short, channel-specific tips)
+"""
+
+AUTO_RESPONDER_PROMPT = """
+You are an SME customer support auto-responder.
+Reply in under 80 words, acknowledge the customer request, and set a clear next step.
+Do not invent refunds, legal commitments, or policies.
+If details are missing, ask one concise follow-up question.
+Return JSON with:
+- reply
+- confidence (high, medium, low)
+- requires_human (boolean)
+- reason
+"""

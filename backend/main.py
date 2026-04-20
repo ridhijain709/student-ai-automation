@@ -1,7 +1,17 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from backend.db import engine, Base
-from backend.routers import gmail, telegram, linkedin, whatsapp, resume, truthgrid, dashboard
+from backend.routers import (
+    gmail,
+    telegram,
+    linkedin,
+    whatsapp,
+    resume,
+    truthgrid,
+    dashboard,
+    content_scheduler,
+    auto_responder,
+)
 
 # Initialize database tables on startup
 def init_db():
@@ -30,6 +40,8 @@ app.include_router(gmail.router)
 app.include_router(telegram.router)
 app.include_router(linkedin.router)
 app.include_router(whatsapp.router)
+app.include_router(content_scheduler.router)
+app.include_router(auto_responder.router)
 app.include_router(resume.router)
 app.include_router(truthgrid.router)
 app.include_router(dashboard.router)

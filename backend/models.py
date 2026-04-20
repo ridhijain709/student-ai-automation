@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String, Text, DateTime, ForeignKey
+from sqlalchemy import Column, Integer, String, Text, DateTime
 from sqlalchemy.sql import func
 from backend.db import Base
 
@@ -62,4 +62,48 @@ class TruthGridReport(Base):
     weaknesses = Column(Text)
     next_steps = Column(Text)
     full_report = Column(Text)
+    created_at = Column(DateTime, default=func.now())
+
+class WhatsAppLead(Base):
+    __tablename__ = "whatsapp_leads"
+    id = Column(Integer, primary_key=True, index=True)
+    source_row_id = Column(String, index=True, unique=True, nullable=True)
+    name = Column(String, nullable=False)
+    phone = Column(String, index=True, nullable=False)
+    requirement = Column(Text, nullable=True)
+    source = Column(String, default="google_form")
+    status = Column(String, default="new")
+    follow_up_due_at = Column(DateTime, nullable=True)
+    follow_up_sent_at = Column(DateTime, nullable=True)
+    error_message = Column(Text, nullable=True)
+    created_at = Column(DateTime, default=func.now())
+    updated_at = Column(DateTime, default=func.now(), onupdate=func.now())
+
+class ContentScheduleItem(Base):
+    __tablename__ = "content_schedule_items"
+    id = Column(Integer, primary_key=True, index=True)
+    platform = Column(String, index=True, nullable=False)
+    title = Column(String, nullable=False)
+    content = Column(Text, nullable=False)
+    scheduled_for = Column(DateTime, nullable=False)
+    status = Column(String, default="scheduled")
+    ai_suggestion = Column(Text, nullable=True)
+    reminder_at = Column(DateTime, nullable=True)
+    reminder_sent_at = Column(DateTime, nullable=True)
+    publish_reference = Column(String, nullable=True)
+    error_message = Column(Text, nullable=True)
+    created_at = Column(DateTime, default=func.now())
+    updated_at = Column(DateTime, default=func.now(), onupdate=func.now())
+
+class AutoResponderEvent(Base):
+    __tablename__ = "auto_responder_events"
+    id = Column(Integer, primary_key=True, index=True)
+    channel = Column(String, index=True, nullable=False)
+    sender = Column(String, nullable=False)
+    incoming_text = Column(Text, nullable=False)
+    reply_text = Column(Text, nullable=True)
+    status = Column(String, default="processed")
+    escalation_reason = Column(String, nullable=True)
+    source = Column(String, default="webhook")
+    metadata_json = Column(Text, nullable=True)
     created_at = Column(DateTime, default=func.now())
