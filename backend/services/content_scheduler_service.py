@@ -63,8 +63,10 @@ def create_schedule_item(
         raise ValueError(f"Unsupported platform '{platform}'. Supported: {', '.join(sorted(SUPPORTED_PLATFORMS))}")
 
     scheduled_dt = parse_datetime(scheduled_for)
-    if scheduled_dt < _utcnow() - timedelta(minutes=1):
-        raise ValueError("scheduled_for cannot be in the past.")
+    if scheduled_dt < _utcnow() - timedelta(minutes=settings.CONTENT_SCHEDULING_TOLERANCE_MINUTES):
+        raise ValueError(
+            f"scheduled_for cannot be more than {settings.CONTENT_SCHEDULING_TOLERANCE_MINUTES} minutes in the past."
+        )
 
     reminder_at = scheduled_dt - timedelta(minutes=settings.CONTENT_REMINDER_MINUTES)
     ai_suggestion = None

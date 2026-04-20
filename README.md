@@ -69,7 +69,7 @@ The backend is the source of truth for automation status tracking.
 
 ### Backend
 ```bash
-cd /home/runner/work/student-ai-automation/student-ai-automation
+cd <repo-root>
 python -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
@@ -79,7 +79,7 @@ uvicorn backend.main:app --reload --port 8000
 
 ### Frontend
 ```bash
-cd /home/runner/work/student-ai-automation/student-ai-automation
+cd <repo-root>
 npm ci
 npm run dev
 ```

@@ -35,11 +35,14 @@ def create_lead(payload: LeadCaptureInput, db: Session = Depends(get_db)):
             source_row_id=payload.source_row_id,
         )
     except ValueError as exc:
-        raise HTTPException(status_code=400, detail=str(exc)) from exc
+        raise HTTPException(status_code=400, detail=str(exc))
 
 @router.post("/followups/run")
 def run_followups(db: Session = Depends(get_db)):
-    return whatsapp_lead_service.process_due_followups(db)
+    try:
+        return whatsapp_lead_service.process_due_followups(db)
+    except Exception:
+        raise HTTPException(status_code=500, detail="Unable to process follow-ups right now.")
 
 @router.get("/leads")
 def get_leads(db: Session = Depends(get_db)):

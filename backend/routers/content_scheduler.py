@@ -34,7 +34,7 @@ def create_item(payload: ScheduleItemInput, db: Session = Depends(get_db)):
             brief=payload.brief,
         )
     except ValueError as exc:
-        raise HTTPException(status_code=400, detail=str(exc)) from exc
+        raise HTTPException(status_code=400, detail=str(exc))
 
 
 @router.get("/items")
@@ -68,5 +68,5 @@ def run_reminders(now: str | None = None, db: Session = Depends(get_db)):
         try:
             parsed_now = content_scheduler_service.parse_datetime(now)
         except ValueError as exc:
-            raise HTTPException(status_code=400, detail=str(exc)) from exc
+            raise HTTPException(status_code=400, detail=str(exc))
     return content_scheduler_service.run_due_reminders(db, now=parsed_now)

@@ -60,7 +60,7 @@ def ingest_lead(
         phone=normalized_phone,
         requirement=(requirement or "").strip(),
         source=(source or "google_form").strip().lower(),
-        status="welcome_sent",
+        status="new",
         follow_up_due_at=_utcnow() + timedelta(hours=settings.WHATSAPP_FOLLOWUP_DELAY_HOURS),
     )
     db.add(lead)
@@ -80,6 +80,7 @@ def ingest_lead(
             status="sent",
         )
     )
+    lead.status = "welcome_sent"
     db.commit()
     db.refresh(lead)
     return {"status": "processed", "lead_id": lead.id, "phone": lead.phone}
@@ -120,10 +121,10 @@ def process_due_followups(db: Session, now: datetime | None = None):
             lead.status = "followup_sent"
             lead.error_message = None
             sent_count += 1
-        except Exception as exc:
+        except Exception:
             lead.status = "failed"
-            lead.error_message = str(exc)
-            failed.append({"lead_id": lead.id, "error": str(exc)})
+            lead.error_message = "followup_send_failed"
+            failed.append({"lead_id": lead.id, "error": "followup_send_failed"})
 
     db.commit()
     return {"due": len(due_leads), "sent": sent_count, "failed": failed}

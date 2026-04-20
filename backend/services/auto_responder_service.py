@@ -100,7 +100,12 @@ def handle_webhook(
         db.refresh(event)
         return {"event_id": event.id, "status": event.status, "reply": None}
 
-    ai_result = _generate_reply(normalized_channel, sender.strip(), text.strip()[:2000], business_context)
+    ai_result = _generate_reply(
+        normalized_channel,
+        sender.strip(),
+        text.strip()[: settings.AUTO_RESPONDER_MAX_INCOMING_LENGTH],
+        business_context,
+    )
     status = "replied"
     reason = ai_result.get("reason", "")
     if ai_result.get("requires_human"):
