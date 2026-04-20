@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
 export default function ResumePage() {
   const [formData, setFormData] = useState({ target_role: '', company_name: '', jd_text: '', master_profile_text: '' });
@@ -21,7 +21,10 @@ export default function ResumePage() {
 
   return (
     <div className="p-8 max-w-4xl mx-auto">
-      <h1 className="text-3xl font-bold mb-6">Resume Automation</h1>
+      <h1 className="text-3xl font-bold mb-2">Proposal Copy Helper</h1>
+      <p className="text-gray-600 mb-6">
+        Supporting utility for drafting clearer service summaries and implementation notes from raw client briefs.
+      </p>
       <form onSubmit={handleSubmit} className="bg-white p-6 rounded-lg shadow mb-8 space-y-4">
         <input className="w-full p-2 border rounded" placeholder="Target Role" onChange={e => setFormData({...formData, target_role: e.target.value})} />
         <input className="w-full p-2 border rounded" placeholder="Company Name" onChange={e => setFormData({...formData, company_name: e.target.value})} />

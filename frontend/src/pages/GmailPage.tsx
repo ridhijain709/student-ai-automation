@@ -23,12 +23,15 @@ export default function GmailPage() {
 
   return (
     <div className="p-8 max-w-4xl mx-auto">
-      <h1 className="text-3xl font-bold mb-6">Gmail Assistant</h1>
+      <h1 className="text-3xl font-bold mb-2">AI Query Auto-Responder</h1>
+      <p className="text-gray-600 mb-6">
+        Demo module for triaging inbound client queries and generating first-draft responses.
+      </p>
       <div className="bg-white p-6 rounded-lg shadow mb-8 space-y-4">
-        <input className="w-full p-2 border rounded" placeholder="Sender" onChange={e => setSender(e.target.value)} />
-        <input className="w-full p-2 border rounded" placeholder="Subject" onChange={e => setSubject(e.target.value)} />
-        <textarea className="w-full p-2 border rounded h-32" placeholder="Paste email content here..." onChange={e => setText(e.target.value)} />
-        <button onClick={handleAnalyze} className="bg-blue-600 text-white px-6 py-2 rounded font-semibold">Analyze</button>
+        <input className="w-full p-2 border rounded" placeholder="Lead source / sender" onChange={e => setSender(e.target.value)} />
+        <input className="w-full p-2 border rounded" placeholder="Topic or query subject" onChange={e => setSubject(e.target.value)} />
+        <textarea className="w-full p-2 border rounded h-32" placeholder="Paste incoming query text..." onChange={e => setText(e.target.value)} />
+        <button onClick={handleAnalyze} className="bg-blue-600 text-white px-6 py-2 rounded font-semibold">Generate Response Draft</button>
       </div>
 
       {result && (
@@ -41,7 +44,7 @@ export default function GmailPage() {
         </div>
       )}
 
-      <h2 className="text-2xl font-bold mb-4">Recent Messages</h2>
+      <h2 className="text-2xl font-bold mb-4">Recent Demo Queries</h2>
       <div className="space-y-4">
         {messages.map(m => (
           <div key={m.id} className="bg-white p-4 rounded shadow border-l-4 border-blue-500">

@@ -1,78 +1,91 @@
-# Ridhi Command Center
+# SME AI Automation Portfolio
 
-The **Ridhi Command Center** is an AI-powered personal assistant designed to streamline the workflow of student entrepreneurs. It centralizes communication, automates resume tailoring, and provides actionable employability insights, all powered by Google Gemini.
+Client-ready portfolio for productized automation services for small and mid-sized businesses (SMEs).
 
----
+## Positioning
 
-## 🚀 Purpose
-To reduce cognitive load for student entrepreneurs by triaging communications, automating job application materials, and tracking progress through a unified dashboard.
+This repository is structured as a consultancy showcase, not a generic student app.  
+It demonstrates practical AI automation systems that can be scoped, demoed, and implemented quickly for SMEs.
 
----
+## Productized Offers
 
-## 📦 Modules
-- **Dashboard**: Central overview of urgent tasks, pending follow-ups, and recent activity.
-- **Gmail & Telegram**: AI-powered triage, summarization, and draft replies for incoming messages.
-- **LinkedIn Assist**: Manual conversation analysis for connection requests, follow-ups, and referral asks.
-- **WhatsApp (Stub)**: Simulation-first architecture for incoming message handling.
-- **Resume Automation**: ATS-friendly resume generation based on job descriptions and master profiles.
-- **TruthGrid**: Rule-based scoring and AI-generated employability reports.
+### 1) WhatsApp Lead Follow-up System
+- Captures inbound leads from form/sheet workflows.
+- Sends immediate acknowledgement message.
+- Queues timed follow-up sequence (example: +24h, +48h).
+- Logs status for sales handoff.
 
----
+### 2) Content Calendar + Auto-Scheduler
+- Builds weekly/monthly content themes.
+- Drafts post copy with AI assistance.
+- Supports batch scheduling workflow with client-approved tools.
 
-## 🛠 Tech Stack
-- **Backend**: Python, FastAPI, SQLAlchemy, SQLite
-- **Frontend**: React, Tailwind CSS
-- **AI/LLM**: Google Gemini API (`gemini-1.5-flash`)
-- **Deployment**: Cloud Run (Infrastructure-ready)
+### 3) AI Query Auto-Responder
+- Accepts inbound query text.
+- Categorizes urgency/intent.
+- Generates response drafts for faster first replies.
 
----
+## Who This Is For
 
-## 🏗 Architecture
-The application follows a standard client-server architecture:
-- **FastAPI Backend**: Handles API requests, database interactions, and AI orchestration.
-- **React Frontend**: Provides a responsive, professional UI for interaction.
-- **SQLite**: Lightweight database for persistence.
+- Coaching institutes
+- Clinics and healthcare practices
+- CA/accounting firms
+- Retail/FMCG distributors
+- Local service businesses
 
----
+## What Is Live vs Demo
 
-## ⚙️ Setup
+| Area | Status | Notes |
+| --- | --- | --- |
+| Portfolio landing page (`src/App.tsx`) | Live in repo | Main presentation layer |
+| AI draft generation flows | Demo-ready | Works with configured model/backend routes |
+| WhatsApp/social platform posting | Simulated by default | Live credentials are connected only in client environments |
+| Secrets/API keys | Not stored in repo | Use env vars only |
+
+## Quick Setup
 
 ### Prerequisites
-- Python 3.10+
 - Node.js 18+
+- npm
 
-### Backend
-1. `cd backend`
-2. `pip install -r requirements.txt`
-3. Create a `.env` file and add `GEMINI_API_KEY=your_key_here`.
-4. Run: `python main.py`
+### Run locally
+```bash
+npm install
+npm run dev
+```
 
-### Frontend
-1. `cd frontend`
-2. `npm install`
-3. `npm run dev`
+Open `http://localhost:3000`.
 
----
+### Build check
+```bash
+npm run lint
+npm run build
+```
 
-## 💡 Simulated vs. Live Features
-| Feature | Status | Note |
-| :--- | :--- | :--- |
-| **Gemini Integration** | Live | Fully functional via API |
-| **Database Persistence** | Live | SQLite |
-| **Gmail/Telegram** | Live | Currently via pasted text |
-| **WhatsApp** | Simulated | Stubbed for future integration |
+## Demo Flow (for client calls)
 
----
+1. Start with one business pain-point (missed leads, content inconsistency, slow query handling).
+2. Show the matching productized module.
+3. Walk through sample input → automated output.
+4. Clarify demo scope vs production integration.
+5. Propose 1-week pilot.
 
-## 🗺 Roadmap
-- [ ] Integrate real Gmail/Telegram APIs.
-- [ ] Implement user authentication.
-- [ ] Add real-time notifications via WebSockets.
-- [ ] Enhance TruthGrid scoring with more data points.
+## Offer Structure (example)
 
----
+- **Starter Pilot (1 workflow):** ₹6,000–₹10,000
+- **Growth Pack (3 workflows + 30-day support):** ₹18,000+
+- **Custom SME Stack:** scoped after discovery
 
-## 👤 Author
-**Ridhi Jain**
-*Student Entrepreneur & Developer*
-[ridhijain608@gmail.com](mailto:ridhijain608@gmail.com)
+> Pricing is indicative for portfolio presentation and should be adjusted per scope, tool costs, and support window.
+
+## Limitations and Honesty Notes
+
+- This repo intentionally avoids hardcoded production credentials.
+- Third-party integrations (WhatsApp API providers, scheduler accounts, CRM tools) require client-owned accounts.
+- Some flows are simulation-first to keep demos safe and reproducible.
+
+## Supporting Docs
+
+- `PORTFOLIO_ROADMAP.md` – practical delivery roadmap from demo to implementation.
+- `DEPLOYMENT_GUIDE.md` – deployment notes (use placeholders/secrets, never raw keys).
+

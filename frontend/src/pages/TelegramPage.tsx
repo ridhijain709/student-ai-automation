@@ -20,11 +20,14 @@ export default function TelegramPage() {
 
   return (
     <div className="p-8">
-      <h1 className="text-2xl font-bold mb-6">Telegram Assistant</h1>
+      <h1 className="text-2xl font-bold mb-2">Inbox Simulation Lab</h1>
+      <p className="text-gray-600 mb-6">
+        Support module used to test inbound message parsing logic for the AI Query Auto-Responder offer.
+      </p>
       <form onSubmit={handleSubmit} className="mb-8 p-4 bg-white rounded shadow">
-        <input className="block w-full mb-2 p-2 border" placeholder="Sender" onChange={e => setMsg({...msg, sender: e.target.value})} />
-        <textarea className="block w-full mb-2 p-2 border" placeholder="Message" onChange={e => setMsg({...msg, raw_text: e.target.value})} />
-        <button className="bg-blue-600 text-white px-4 py-2 rounded">Process Message</button>
+        <input className="block w-full mb-2 p-2 border" placeholder="Client / sender" onChange={e => setMsg({...msg, sender: e.target.value})} />
+        <textarea className="block w-full mb-2 p-2 border" placeholder="Incoming query text" onChange={e => setMsg({...msg, raw_text: e.target.value})} />
+        <button className="bg-blue-600 text-white px-4 py-2 rounded">Process Query</button>
       </form>
       <div className="space-y-4">
         {messages.map(m => (

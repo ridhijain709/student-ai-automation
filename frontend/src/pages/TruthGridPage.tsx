@@ -19,7 +19,10 @@ export default function TruthGridPage() {
 
   return (
     <div className="p-8 max-w-4xl mx-auto bg-gray-50 min-h-screen">
-      <h1 className="text-3xl font-bold mb-6">TruthGrid V1 Assessment</h1>
+      <h1 className="text-3xl font-bold mb-2">Discovery Scorecard</h1>
+      <p className="text-gray-600 mb-6">
+        Intake worksheet for discovery calls to prioritize which automation should be implemented first.
+      </p>
       <form onSubmit={handleSubmit} className="bg-white p-6 rounded-lg shadow mb-8 grid grid-cols-2 gap-4">
         <input className="p-2 border rounded" placeholder="Student Name" onChange={e => setFormData({...formData, student_name: e.target.value})} />
         <input className="p-2 border rounded" placeholder="Target Role" onChange={e => setFormData({...formData, target_role: e.target.value})} />
