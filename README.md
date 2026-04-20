@@ -1,78 +1,146 @@
-# Ridhi Command Center
+# SME AI Automation Suite
 
-The **Ridhi Command Center** is an AI-powered personal assistant designed to streamline the workflow of student entrepreneurs. It centralizes communication, automates resume tailoring, and provides actionable employability insights, all powered by Google Gemini.
+Production-oriented, low-cost automation stack for SMEs with 3 core workflows:
 
----
+1. **WhatsApp Lead Follow-up**
+2. **Content Scheduler**
+3. **AI Auto-Responder**
 
-## 🚀 Purpose
-To reduce cognitive load for student entrepreneurs by triaging communications, automating job application materials, and tracking progress through a unified dashboard.
-
----
-
-## 📦 Modules
-- **Dashboard**: Central overview of urgent tasks, pending follow-ups, and recent activity.
-- **Gmail & Telegram**: AI-powered triage, summarization, and draft replies for incoming messages.
-- **LinkedIn Assist**: Manual conversation analysis for connection requests, follow-ups, and referral asks.
-- **WhatsApp (Stub)**: Simulation-first architecture for incoming message handling.
-- **Resume Automation**: ATS-friendly resume generation based on job descriptions and master profiles.
-- **TruthGrid**: Rule-based scoring and AI-generated employability reports.
+This repo keeps the implementation simple enough for non-technical operators, while adding safer validation, status tracking, and configuration for real deployments.
 
 ---
 
-## 🛠 Tech Stack
-- **Backend**: Python, FastAPI, SQLAlchemy, SQLite
-- **Frontend**: React, Tailwind CSS
-- **AI/LLM**: Google Gemini API (`gemini-1.5-flash`)
-- **Deployment**: Cloud Run (Infrastructure-ready)
+## What’s Included
+
+### 1) WhatsApp Lead Follow-up (`/whatsapp`)
+- Capture new leads with row-aware dedupe (`source_row_id`)
+- Normalize and validate phone numbers
+- Prevent duplicate sends with status-based gating
+- Track lifecycle: `new` → `welcome_sent` → `followup_sent` / `failed`
+- Run due follow-ups with one endpoint call
+
+Key endpoints:
+- `POST /whatsapp/leads`
+- `POST /whatsapp/followups/run`
+- `GET /whatsapp/leads`
+- `GET /whatsapp/messages`
+
+### 2) Content Scheduler (`/content-scheduler`)
+- Create scheduled content with strict platform validation
+- Reliable datetime parsing (ISO, timezone-safe UTC normalization)
+- Optional AI suggestion generation (with fallback if model fails)
+- Reminder execution flow with one-time reminder state tracking
+- Publish status updates with reference IDs
+
+Key endpoints:
+- `POST /content-scheduler/items`
+- `GET /content-scheduler/items`
+- `POST /content-scheduler/reminders/run`
+- `POST /content-scheduler/items/{id}/publish`
+
+### 3) AI Auto-Responder (`/auto-responder`)
+- Safe webhook handling with request validation
+- Channel allowlist to block unexpected sources
+- Keyword-based escalation for sensitive conversations
+- Configurable business context (no hardcoded vertical assumptions)
+- Persistent response/event logging for auditability
+
+Key endpoints:
+- `POST /auto-responder/webhook`
+- `GET /auto-responder/events`
 
 ---
 
-## 🏗 Architecture
-The application follows a standard client-server architecture:
-- **FastAPI Backend**: Handles API requests, database interactions, and AI orchestration.
-- **React Frontend**: Provides a responsive, professional UI for interaction.
-- **SQLite**: Lightweight database for persistence.
+## Architecture
+
+- **Backend:** FastAPI + SQLAlchemy + SQLite
+- **Frontend:** React + Vite (dashboard/prototype UI)
+- **AI:** Gemini (`gemini-1.5-flash`) with structured JSON responses where needed
+
+The backend is the source of truth for automation status tracking.
 
 ---
 
-## ⚙️ Setup
+## Setup
 
 ### Prerequisites
 - Python 3.10+
-- Node.js 18+
+- Node.js 20+
 
 ### Backend
-1. `cd backend`
-2. `pip install -r requirements.txt`
-3. Create a `.env` file and add `GEMINI_API_KEY=your_key_here`.
-4. Run: `python main.py`
+```bash
+cd /home/runner/work/student-ai-automation/student-ai-automation
+python -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+cp .env.example .env
+uvicorn backend.main:app --reload --port 8000
+```
 
 ### Frontend
-1. `cd frontend`
-2. `npm install`
-3. `npm run dev`
+```bash
+cd /home/runner/work/student-ai-automation/student-ai-automation
+npm ci
+npm run dev
+```
 
 ---
 
-## 💡 Simulated vs. Live Features
-| Feature | Status | Note |
-| :--- | :--- | :--- |
-| **Gemini Integration** | Live | Fully functional via API |
-| **Database Persistence** | Live | SQLite |
-| **Gmail/Telegram** | Live | Currently via pasted text |
-| **WhatsApp** | Simulated | Stubbed for future integration |
+## Example Requests
+
+### Create a lead
+```bash
+curl -X POST http://localhost:8000/whatsapp/leads \
+  -H "Content-Type: application/json" \
+  -d '{
+    "source_row_id":"row-101",
+    "name":"Anita",
+    "phone":"9876543210",
+    "requirement":"Need pricing for coaching package",
+    "source":"google_sheet"
+  }'
+```
+
+### Create a scheduled post
+```bash
+curl -X POST http://localhost:8000/content-scheduler/items \
+  -H "Content-Type: application/json" \
+  -d '{
+    "platform":"linkedin",
+    "title":"Free SME Growth Checklist",
+    "content":"Download our checklist to reduce lead response time.",
+    "scheduled_for":"2026-05-01T10:00:00Z",
+    "generate_ai_suggestion":true
+  }'
+```
+
+### Handle incoming customer webhook
+```bash
+curl -X POST http://localhost:8000/auto-responder/webhook \
+  -H "Content-Type: application/json" \
+  -d '{
+    "channel":"whatsapp",
+    "sender":"+919999999999",
+    "text":"Can someone help me with my order status?",
+    "source":"whatsapp_cloud_api"
+  }'
+```
 
 ---
 
-## 🗺 Roadmap
-- [ ] Integrate real Gmail/Telegram APIs.
-- [ ] Implement user authentication.
-- [ ] Add real-time notifications via WebSockets.
-- [ ] Enhance TruthGrid scoring with more data points.
+## Production Notes
+
+- Replace permissive CORS (`*`) before deployment.
+- Keep all API keys in environment variables.
+- For high-volume usage, migrate from SQLite to Postgres and add background workers for scheduler/follow-up jobs.
+- Current sending is queue/simulation-ready through stored drafts; integrate your provider (AiSensy/Twilio/WATI) in the service layer.
 
 ---
 
-## 👤 Author
-**Ridhi Jain**
-*Student Entrepreneur & Developer*
-[ridhijain608@gmail.com](mailto:ridhijain608@gmail.com)
+## Positioning for Client Demos
+
+This suite is designed to show SME owners outcomes, not tooling:
+- Faster lead response
+- Fewer missed follow-ups
+- Consistent content execution
+- Reliable first-response support with human escalation

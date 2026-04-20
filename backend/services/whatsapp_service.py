@@ -7,8 +7,16 @@ import json
 
 def process_incoming(db: Session, sender: str, raw_text: str):
     user_prompt = f"Sender: {sender}\nMessage: {raw_text}"
-    analysis_json = call_gemini_json(GMAIL_TRIAGE_PROMPT, user_prompt, MessageTriageSchema)
-    analysis = json.loads(analysis_json)
+    try:
+        analysis_json = call_gemini_json(GMAIL_TRIAGE_PROMPT, user_prompt, MessageTriageSchema)
+        analysis = json.loads(analysis_json)
+    except Exception:
+        analysis = {
+            "summary": "Unable to analyze message automatically.",
+            "category": "uncategorized",
+            "urgency": "important",
+            "draft_reply": "Thanks for your message. Our team will reply shortly.",
+        }
     
     db_message = Message(
         platform="whatsapp",
