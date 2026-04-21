@@ -9,6 +9,15 @@ This repository showcases 3 client-ready automation demos built to solve real bu
 - Local service businesses
 - Small brands and SMEs
 
+## Live Demo Projects
+
+| # | Demo | Sector | Status |
+|---|------|--------|--------|
+| 1 | [WhatsApp Lead Follow-Up System](demos/01-whatsapp-lead-flow/) | Coaching Institutes | Demo Ready |
+| 2 | [Gmail Lead Parser](demos/02-gmail-lead-parser/) | CA Firms | Core Built |
+| 3 | [AI Content Scheduler](demos/03-content-scheduler/) | D2C / SME | Template Ready |
+
+📩 To see any demo in action: [your-email@example.com](mailto:your-email@example.com)
 ---
 
 ## What This Repo Proves
