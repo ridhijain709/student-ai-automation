@@ -1,78 +1,87 @@
-# Ridhi Command Center
+# AI Automation Portfolio
 
-The **Ridhi Command Center** is an AI-powered personal assistant designed to streamline the workflow of student entrepreneurs. It centralizes communication, automates resume tailoring, and provides actionable employability insights, all powered by Google Gemini.
+I build simple, practical AI automation systems that help small businesses save time, respond faster, and capture more leads.
 
----
-
-## 🚀 Purpose
-To reduce cognitive load for student entrepreneurs by triaging communications, automating job application materials, and tracking progress through a unified dashboard.
-
----
-
-## 📦 Modules
-- **Dashboard**: Central overview of urgent tasks, pending follow-ups, and recent activity.
-- **Gmail & Telegram**: AI-powered triage, summarization, and draft replies for incoming messages.
-- **LinkedIn Assist**: Manual conversation analysis for connection requests, follow-ups, and referral asks.
-- **WhatsApp (Stub)**: Simulation-first architecture for incoming message handling.
-- **Resume Automation**: ATS-friendly resume generation based on job descriptions and master profiles.
-- **TruthGrid**: Rule-based scoring and AI-generated employability reports.
+This repository showcases 3 client-ready automation demos built to solve real business problems for:
+- CA firms
+- Coaching centres
+- Clinics
+- Local service businesses
+- Small brands and SMEs
 
 ---
 
-## 🛠 Tech Stack
-- **Backend**: Python, FastAPI, SQLAlchemy, SQLite
-- **Frontend**: React, Tailwind CSS
-- **AI/LLM**: Google Gemini API (`gemini-1.5-flash`)
-- **Deployment**: Cloud Run (Infrastructure-ready)
+## What This Repo Proves
+
+This portfolio demonstrates how AI + no-code tools can be used to:
+
+- follow up with leads automatically
+- generate and schedule social media content
+- reply to common customer questions instantly
+
+The goal is not to build “AI for the sake of AI” — it is to build automations that create business impact.
 
 ---
 
-## 🏗 Architecture
-The application follows a standard client-server architecture:
-- **FastAPI Backend**: Handles API requests, database interactions, and AI orchestration.
-- **React Frontend**: Provides a responsive, professional UI for interaction.
-- **SQLite**: Lightweight database for persistence.
+## Live Demo Automations
+
+### 1. WhatsApp Lead Follow-up System
+**Problem:** Leads come in, but no one follows up fast enough.  
+**Solution:** Automatically send a WhatsApp message after a Google Form submission and schedule follow-ups.  
+**Outcome:** Faster response time and fewer lost leads.
+
+**Typical stack:**
+- Google Forms
+- Google Sheets
+- Zapier / Make
+- WhatsApp API (AiSensy / WATI / similar)
 
 ---
 
-## ⚙️ Setup
+### 2. Content Auto-Scheduler
+**Problem:** Businesses struggle to post content consistently.  
+**Solution:** Turn a content sheet into captions and schedule posts automatically.  
+**Outcome:** 30 days of content planned in less time.
 
-### Prerequisites
-- Python 3.10+
-- Node.js 18+
-
-### Backend
-1. `cd backend`
-2. `pip install -r requirements.txt`
-3. Create a `.env` file and add `GEMINI_API_KEY=your_key_here`.
-4. Run: `python main.py`
-
-### Frontend
-1. `cd frontend`
-2. `npm install`
-3. `npm run dev`
+**Typical stack:**
+- Google Sheets
+- OpenAI / ChatGPT
+- Buffer / Meta scheduler
+- Zapier / Make
 
 ---
 
-## 💡 Simulated vs. Live Features
-| Feature | Status | Note |
-| :--- | :--- | :--- |
-| **Gemini Integration** | Live | Fully functional via API |
-| **Database Persistence** | Live | SQLite |
-| **Gmail/Telegram** | Live | Currently via pasted text |
-| **WhatsApp** | Simulated | Stubbed for future integration |
+### 3. FAQ Auto-Reply Bot
+**Problem:** Teams answer the same questions repeatedly.  
+**Solution:** Use AI to detect intent and auto-reply to common questions on WhatsApp or Telegram.  
+**Outcome:** Fewer repetitive messages and faster customer support.
+
+**Typical stack:**
+- WhatsApp API / Telegram Bot
+- OpenAI API
+- Zapier / Make
 
 ---
 
-## 🗺 Roadmap
-- [ ] Integrate real Gmail/Telegram APIs.
-- [ ] Implement user authentication.
-- [ ] Add real-time notifications via WebSockets.
-- [ ] Enhance TruthGrid scoring with more data points.
+## Repository Structure
 
----
+Each demo should be organized like this:
 
-## 👤 Author
-**Ridhi Jain**
-*Student Entrepreneur & Developer*
-[ridhijain608@gmail.com](mailto:ridhijain608@gmail.com)
+```text
+/whatsapp-lead-automation
+  README.md
+  screenshots/
+  workflow-diagram.png
+  demo-video-link.md
+
+/content-auto-scheduler
+  README.md
+  screenshots/
+  workflow-diagram.png
+  demo-video-link.md
+
+/faq-auto-reply-bot
+  README.md
+  screenshots/
+  workflow-diagram.png
+  demo-video-link.md
