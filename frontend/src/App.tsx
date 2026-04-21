@@ -2,12 +2,10 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Sidebar from './components/Sidebar';
 import Dashboard from './pages/Dashboard';
 import WhatsAppPage from './pages/WhatsAppPage';
+import ContentSchedulerPage from './pages/ContentSchedulerPage';
+import FAQBotPage from './pages/FAQBotPage';
 import ResumePage from './pages/ResumePage';
 import TruthGridPage from './pages/TruthGridPage';
-
-// Add these new pages after creating them
-// import ContentSchedulerPage from './pages/ContentSchedulerPage';
-// import FAQBotPage from './pages/FAQBotPage';
 
 export default function App() {
   return (
@@ -19,14 +17,10 @@ export default function App() {
             <Route path="/" element={<Dashboard />} />
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/whatsapp" element={<WhatsAppPage />} />
+            <Route path="/content-scheduler" element={<ContentSchedulerPage />} />
+            <Route path="/faq-bot" element={<FAQBotPage />} />
             <Route path="/resume" element={<ResumePage />} />
             <Route path="/truthgrid" element={<TruthGridPage />} />
-
-            {/*
-              Add these routes once the pages are created:
-              <Route path="/content-scheduler" element={<ContentSchedulerPage />} />
-              <Route path="/faq-bot" element={<FAQBotPage />} />
-            */}
           </Routes>
         </div>
       </div>

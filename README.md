@@ -1,87 +1,51 @@
 # AI Automation Portfolio
 
-I build simple, practical AI automation systems that help small businesses save time, respond faster, and capture more leads.
+Client-facing automation portfolio focused on three business demos for CA firms, coaching centres, clinics, local businesses, and SMEs.
 
-This repository showcases 3 client-ready automation demos built to solve real business problems for:
-- CA firms
-- Coaching centres
-- Clinics
-- Local service businesses
-- Small brands and SMEs
+## Core Business Demos
 
----
+1. **WhatsApp Lead Follow-up System**  
+   Capture leads, send instant WhatsApp responses, and run scheduled follow-ups.
+2. **Content Auto-Scheduler**  
+   Turn a planning sheet into AI-generated captions and scheduled posts.
+3. **FAQ Auto-Reply Bot**  
+   Detect common questions and auto-draft fast, consistent replies.
 
-## What This Repo Proves
+## Business Outcomes
 
-This portfolio demonstrates how AI + no-code tools can be used to:
+- Faster lead response times
+- Fewer missed follow-ups
+- More consistent content publishing
+- Lower repetitive support workload
 
-- follow up with leads automatically
-- generate and schedule social media content
-- reply to common customer questions instantly
+## Frontend Portfolio UI
 
-The goal is not to build “AI for the sake of AI” — it is to build automations that create business impact.
+The client-facing dashboard and sidebar are in:
 
----
+- `frontend/src/pages/Dashboard.tsx`
+- `frontend/src/components/Sidebar.tsx`
+- `frontend/src/pages/WhatsAppPage.tsx`
+- `frontend/src/pages/ContentSchedulerPage.tsx`
+- `frontend/src/pages/FAQBotPage.tsx`
 
-## Live Demo Automations
+## Documentation
 
-### 1. WhatsApp Lead Follow-up System
-**Problem:** Leads come in, but no one follows up fast enough.  
-**Solution:** Automatically send a WhatsApp message after a Google Form submission and schedule follow-ups.  
-**Outcome:** Faster response time and fewer lost leads.
+- `docs/repo-restructure-plan.md` — folder-by-folder repo restructure plan
+- `docs/readme-line-by-line-replacement.md` — line-by-line README replacement draft tailored to this repo
+- `docs/github-cleanup-checklist.md` — GitHub cleanup checklist with commit order
+- `docs/portfolio-overview.md` — portfolio positioning summary
+- `docs/demo-mapping.md` — mapping of existing code to the 3 business demos
 
-**Typical stack:**
-- Google Forms
-- Google Sheets
-- Zapier / Make
-- WhatsApp API (AiSensy / WATI / similar)
+## Demo Collateral Placeholders
 
----
+Each demo folder includes placeholders for:
 
-### 2. Content Auto-Scheduler
-**Problem:** Businesses struggle to post content consistently.  
-**Solution:** Turn a content sheet into captions and schedule posts automatically.  
-**Outcome:** 30 days of content planned in less time.
+- screenshots
+- workflow diagram
+- Loom walkthrough link
 
-**Typical stack:**
-- Google Sheets
-- OpenAI / ChatGPT
-- Buffer / Meta scheduler
-- Zapier / Make
+See:
 
----
-
-### 3. FAQ Auto-Reply Bot
-**Problem:** Teams answer the same questions repeatedly.  
-**Solution:** Use AI to detect intent and auto-reply to common questions on WhatsApp or Telegram.  
-**Outcome:** Fewer repetitive messages and faster customer support.
-
-**Typical stack:**
-- WhatsApp API / Telegram Bot
-- OpenAI API
-- Zapier / Make
-
----
-
-## Repository Structure
-
-Each demo should be organized like this:
-
-```text
-/whatsapp-lead-automation
-  README.md
-  screenshots/
-  workflow-diagram.png
-  demo-video-link.md
-
-/content-auto-scheduler
-  README.md
-  screenshots/
-  workflow-diagram.png
-  demo-video-link.md
-
-/faq-auto-reply-bot
-  README.md
-  screenshots/
-  workflow-diagram.png
-  demo-video-link.md
+- `demos/whatsapp-lead-followup/`
+- `demos/content-auto-scheduler/`
+- `demos/faq-auto-reply-bot/`
