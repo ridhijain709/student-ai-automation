@@ -1,0 +1,61 @@
+# ── Version control ─────────────────────────────────────
+.git
+.gitignore
+.github
+
+# ── Node artefacts ───────────────────────────────────────
+node_modules
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# ── Python artefacts ─────────────────────────────────────
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.egg-info
+dist-packages
+venv
+.venv
+env
+
+# ── Build outputs (re-built inside Docker) ───────────────
+dist
+build
+coverage
+
+# ── Environment / secrets ────────────────────────────────
+.env
+.env.*
+!.env.example
+*.env
+
+# ── IDE & OS files ───────────────────────────────────────
+.vscode
+.idea
+.DS_Store
+Thumbs.db
+
+# ── Test & CI config ─────────────────────────────────────
+*.test.ts
+*.test.tsx
+*.spec.ts
+*.spec.tsx
+tests
+__tests__
+
+# ── Docs & misc ──────────────────────────────────────────
+*.md
+docs
+LICENSE
+
+# ── Local database ───────────────────────────────────────
+data/
+*.db
+*.sqlite
+
+# ── Cloud / deployment meta ──────────────────────────────
+cloud-run-deploy.sh
+cloudbuild.yaml
