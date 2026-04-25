@@ -1,96 +1,77 @@
-# AI Automation Portfolio
+# AI Automation Consulting Portfolio
 
-I build simple, practical AI automation systems that help small businesses save time, respond faster, and capture more leads.
+I build practical AI automation systems that help Indian SMEs save time, respond faster, and convert more leads — without adding headcount.
 
-This repository showcases 3 client-ready automation demos built to solve real business problems for:
-- CA firms
-- Coaching centres
-- Clinics
-- Local service businesses
-- Small brands and SMEs
+This repository is organised as a consulting portfolio with client-specific strategy, reusable automation docs, and demo materials.
+
+---
+
+## Navigation
+
+- **[Client Pages →](clients/)** — Strategy, positioning, outreach scripts, and demo materials for 14 target clients
+- **[Automation Docs →](automations/)** — Reusable documentation for WhatsApp lead follow-up, Gmail lead parsing, and AI content scheduling
+- **[Live Demos →](demos/)** — Working demo systems available for walkthrough
+
+---
 
 ## Live Demo Projects
 
 | # | Demo | Sector | Status |
 |---|------|--------|--------|
-| 1 | [WhatsApp Lead Follow-Up System](demos/01-whatsapp-lead-flow/) | Coaching Institutes | Demo Ready |
-| 2 | [Gmail Lead Parser](demos/02-gmail-lead-parser/) | CA Firms | Core Built |
-| 3 | [AI Content Scheduler](demos/03-content-scheduler/) | D2C / SME | Template Ready |
+| 1 | [WhatsApp Lead Follow-Up System](demos/01-whatsapp-lead-flow/) | Coaching, Clinics, Food Brands | Demo Ready |
+| 2 | [Gmail Lead Parser](demos/02-gmail-lead-parser/) | CA Firms, Professional Services | Core Built |
+| 3 | [AI Content Scheduler](demos/03-content-scheduler/) | D2C, Personal Brands, SMEs | Template Ready |
 
 📩 To see any demo in action: [your-email@example.com](mailto:your-email@example.com)
----
-
-## What This Repo Proves
-
-This portfolio demonstrates how AI + no-code tools can be used to:
-
-- follow up with leads automatically
-- generate and schedule social media content
-- reply to common customer questions instantly
-
-The goal is not to build “AI for the sake of AI” — it is to build automations that create business impact.
 
 ---
 
-## Live Demo Automations
+## Client Pages
 
-### 1. WhatsApp Lead Follow-up System
-**Problem:** Leads come in, but no one follows up fast enough.  
-**Solution:** Automatically send a WhatsApp message after a Google Form submission and schedule follow-ups.  
-**Outcome:** Faster response time and fewer lost leads.
-
-**Typical stack:**
-- Google Forms
-- Google Sheets
-- Zapier / Make
-- WhatsApp API (AiSensy / WATI / similar)
-
----
-
-### 2. Content Auto-Scheduler
-**Problem:** Businesses struggle to post content consistently.  
-**Solution:** Turn a content sheet into captions and schedule posts automatically.  
-**Outcome:** 30 days of content planned in less time.
-
-**Typical stack:**
-- Google Sheets
-- OpenAI / ChatGPT
-- Buffer / Meta scheduler
-- Zapier / Make
+| # | Client | Sector | Offer |
+|---|--------|--------|-------|
+| 1 | [Ajoyal / Satyaviir Singh](clients/ajoyal-satyaviir-singh/) | Food Brand | Distributor Growth System |
+| 2 | [Dr. Rashmi Shanker](clients/dr-rashmi-shanker/) | Healthcare / Clinic | Patient Handling AI System |
+| 3 | [Ajay Singh Yadav](clients/ajay-singh-yadav/) | Education / Coaching | Admission Conversion AI System |
+| 4 | [Ankit Kumar](clients/ankit-kumar/) | Branding / Agency | White-Label AI Partnership |
+| 5 | [Sitanshu Tripathi](clients/sitanshu-tripathi/) | Consulting | AI Content Scheduling System |
+| 6 | [Manav Agarwal](clients/manav-agarwal/) | Business / Entrepreneurship | Business Operations AI System |
+| 7 | [Shubhankar Pathak](clients/shubhankar-pathak/) | Sales / Professional Services | Lead Follow-Up AI System |
+| 8 | [Altamash Bano Ansari](clients/altamash-bano-ansari/) | Professional Services | Client Communication AI System |
+| 9 | [Priyanshi Rawat](clients/priyanshi-rawat/) | Personal Brand | Personal Brand Content Engine |
+| 10 | [Krish Malik](clients/krish-malik/) | Branding / Agency | White-Label AI Partnership |
+| 11 | [Anubhav Sharma](clients/anubhav-sharma/) | Service Business | Service Business Growth System |
+| 12 | [Asim Sutradhar](clients/asim-sutradhar/) | Tech / Product / Startup | Scalable Business Automation System |
+| 13 | [Sneha Sharma](clients/sneha-sharma/) | Professional Services | Content + Communication Bundle |
+| 14 | [Arsh Agarwal](clients/arsh-agarwal/) | Restaurant / F&B | Restaurant and Enquiry AI System |
 
 ---
 
-### 3. FAQ Auto-Reply Bot
-**Problem:** Teams answer the same questions repeatedly.  
-**Solution:** Use AI to detect intent and auto-reply to common questions on WhatsApp or Telegram.  
-**Outcome:** Fewer repetitive messages and faster customer support.
+## Automation Documentation
 
-**Typical stack:**
-- WhatsApp API / Telegram Bot
-- OpenAI API
-- Zapier / Make
+| # | Automation | Best For |
+|---|-----------|----------|
+| 1 | [WhatsApp Lead Follow-Up](automations/whatsapp-lead-followup.md) | Clinics, coaching, food brands, service businesses |
+| 2 | [Gmail Lead Parsing](automations/gmail-lead-parsing.md) | CA firms, consultancies, professional services |
+| 3 | [AI Content Scheduling](automations/ai-content-scheduling.md) | D2C brands, coaches, personal brands |
 
 ---
 
 ## Repository Structure
 
-Each demo should be organized like this:
-
-```text
-/whatsapp-lead-automation
-  README.md
-  screenshots/
-  workflow-diagram.png
-  demo-video-link.md
-
-/content-auto-scheduler
-  README.md
-  screenshots/
-  workflow-diagram.png
-  demo-video-link.md
-
-/faq-auto-reply-bot
-  README.md
-  screenshots/
-  workflow-diagram.png
-  demo-video-link.md
+```
+README.md                  ← This navigation hub
+clients/                   ← One folder per target client
+  [client-name]/
+    README.md              ← Business context, pain points, outreach messages
+    brief.md               ← Detailed strategy and implementation notes
+    demo-script.md         ← Step-by-step demo walkthrough
+automations/               ← Reusable automation documentation
+  whatsapp-lead-followup.md
+  gmail-lead-parsing.md
+  ai-content-scheduling.md
+demos/                     ← Working demo systems
+  01-whatsapp-lead-flow/
+  02-gmail-lead-parser/
+  03-content-scheduler/
+```
