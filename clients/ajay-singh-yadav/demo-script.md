@@ -45,7 +45,7 @@ Show the AI reply arriving within seconds:
 > Here's a quick overview:
 > - Duration: 2 years
 > - Eligibility: Any graduation with 50%+
-> - Fees: ₹X per year (easy EMI options available)
+> - Fees: ₹[to be confirmed with institute] per year (easy EMI options available)
 > - Next batch starts: [date]
 >
 > We offer specialisations in Marketing, Finance, and Operations.

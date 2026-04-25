@@ -44,7 +44,7 @@ Show the AI reply arriving within seconds:
 >
 > Hair fall treatment depends on the underlying cause — we offer PRP therapy, mesotherapy, and personalised treatment plans based on your diagnosis.
 >
-> Starting consultations are typically ₹X and above, and treatment plans are recommended after an initial assessment with Dr. Rashmi.
+> Starting consultations are typically ₹[to be confirmed with clinic] and above, and treatment plans are recommended after an initial assessment with Dr. Rashmi.
 >
 > Would you like to book an appointment? Please share your preferred date and time and we'll confirm availability."
 

@@ -42,7 +42,7 @@ Show the instant AI reply:
 >
 > We offer [service category] — typically helping [client type] with [outcome].
 >
-> Depending on scope, projects start from ₹[X] and are customised to the specific brief.
+> Depending on scope, projects start from ₹[to be confirmed with client] and are customised to the specific brief.
 >
 > The best next step is a quick 20-minute discovery call so I can understand what you need and share what's most relevant.
 >

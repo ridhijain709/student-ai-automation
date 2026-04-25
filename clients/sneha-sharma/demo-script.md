@@ -74,7 +74,7 @@ Show the instant AI reply:
 
 > "Hi! Thanks for reaching out. I work with [professional type] on [service description] — typically helping clients with [outcome].
 >
-> Projects are customised to the brief, with pricing starting from ₹[X].
+> Projects are customised to the brief, with pricing starting from ₹[to be confirmed with client].
 >
 > The best next step is a quick 20-minute discovery call. Would any time this week or next week work for you?"
 
