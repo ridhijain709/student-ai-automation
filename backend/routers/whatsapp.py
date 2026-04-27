@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter, Depends, HTTPException, Query
 from sqlalchemy.orm import Session
 from backend.db import get_db
 from backend.models import Message
@@ -22,20 +22,44 @@ class WhatsAppWebhookMock(BaseModel):
     from_number: str
     text: str
     name: Optional[str] = None
+    automation: Optional[str] = None  # clinic | education | fmcg
     metadata: dict[str, Any] = {}
 
 @router.post("/incoming")
-def incoming(msg: WhatsAppInput, db: Session = Depends(get_db)):
-    return whatsapp_service.process_incoming(db, msg.sender, msg.raw_text)
+def incoming(
+    msg: WhatsAppInput,
+    db: Session = Depends(get_db),
+    client: str | None = Query(default=None, description="Demo mode: clinic | education | fmcg"),
+):
+    return whatsapp_service.process_incoming(db, msg.sender, msg.raw_text, client=client)
 
 @router.post("/webhook")
-def webhook(payload: WhatsAppWebhookMock, db: Session = Depends(get_db)):
+def webhook(
+    payload: WhatsAppWebhookMock,
+    db: Session = Depends(get_db),
+    client: str | None = Query(default=None, description="Demo mode: clinic | education | fmcg"),
+    business_name: str | None = Query(default=None, description="Optional override for personalization"),
+    tone: str | None = Query(default=None, description="Optional override: premium | friendly | professional"),
+    pricing_line: str | None = Query(default=None, description="Optional override for pricing line"),
+    cta_link: str | None = Query(default=None, description="Optional override for booking link"),
+):
     """
     Mock WhatsApp webhook endpoint.
     Use this in demos to simulate an inbound WhatsApp message.
     """
     sender = payload.name or payload.from_number
-    return whatsapp_service.process_incoming(db, sender, payload.text)
+    vertical = payload.automation or payload.metadata.get("automation")
+    return whatsapp_service.process_incoming(
+        db,
+        sender,
+        payload.text,
+        vertical=vertical,
+        client=client,
+        business_name=business_name,
+        tone=tone,
+        pricing_line=pricing_line,
+        cta_link=cta_link,
+    )
 
 
 @router.post("/send")

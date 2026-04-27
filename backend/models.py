@@ -78,3 +78,27 @@ class Lead(Base):
     tags = Column(String, nullable=True)  # comma-separated for demo simplicity
 
     created_at = Column(DateTime, default=func.now())
+
+
+class LeadInteraction(Base):
+    """
+    New structured capture for multi-client WhatsApp automation.
+    Kept separate from `leads` to avoid risky schema migrations in demos.
+    """
+
+    __tablename__ = "lead_interactions"
+
+    id = Column(Integer, primary_key=True, index=True)
+    client_key = Column(String, index=True)  # clinic | education | fmcg (or future client ids)
+    client_name = Column(String, nullable=True)  # business name
+    platform = Column(String, default="whatsapp")
+
+    name = Column(String, nullable=True)
+    message = Column(Text, nullable=True)
+    intent = Column(String, nullable=True, index=True)
+
+    followup_step = Column(Integer, default=0)  # 0 none, 1 sent step1, 2 sent step2
+    followup_1 = Column(Text, nullable=True)
+    followup_2 = Column(Text, nullable=True)
+
+    created_at = Column(DateTime, default=func.now())
