@@ -1,96 +1,76 @@
 # AI Automation Portfolio
 
-I build simple, practical AI automation systems that help small businesses save time, respond faster, and capture more leads.
-
-This repository showcases 3 client-ready automation demos built to solve real business problems for:
-- CA firms
-- Coaching centres
-- Clinics
-- Local service businesses
-- Small brands and SMEs
-
-## Live Demo Projects
-
-| # | Demo | Sector | Status |
-|---|------|--------|--------|
-| 1 | [WhatsApp Lead Follow-Up System](demos/01-whatsapp-lead-flow/) | Coaching Institutes | Demo Ready |
-| 2 | [Gmail Lead Parser](demos/02-gmail-lead-parser/) | CA Firms | Core Built |
-| 3 | [AI Content Scheduler](demos/03-content-scheduler/) | D2C / SME | Template Ready |
-
-📩 To see any demo in action: [your-email@example.com](mailto:your-email@example.com)
----
-
-## What This Repo Proves
-
-This portfolio demonstrates how AI + no-code tools can be used to:
-
-- follow up with leads automatically
-- generate and schedule social media content
-- reply to common customer questions instantly
-
-The goal is not to build “AI for the sake of AI” — it is to build automations that create business impact.
+I build AI automation systems that help businesses respond faster, capture leads, and grow without increasing workload.
 
 ---
 
-## Live Demo Automations
+## 🚀 Core Client Solutions
 
-### 1. WhatsApp Lead Follow-up System
-**Problem:** Leads come in, but no one follows up fast enough.  
-**Solution:** Automatically send a WhatsApp message after a Google Form submission and schedule follow-ups.  
-**Outcome:** Faster response time and fewer lost leads.
+### 1. WhatsApp Lead Automation
 
-**Typical stack:**
-- Google Forms
-- Google Sheets
-- Zapier / Make
-- WhatsApp API (AiSensy / WATI / similar)
+Problem: Leads don’t get replies → lost revenue
+Solution: Instant reply + lead capture + follow-ups
+Outcome: Faster conversion
 
 ---
 
-### 2. Content Auto-Scheduler
-**Problem:** Businesses struggle to post content consistently.  
-**Solution:** Turn a content sheet into captions and schedule posts automatically.  
-**Outcome:** 30 days of content planned in less time.
+### 2. AI Content Engine
 
-**Typical stack:**
-- Google Sheets
-- OpenAI / ChatGPT
-- Buffer / Meta scheduler
-- Zapier / Make
+Problem: Businesses don’t post consistently
+Solution: Auto-generate + schedule 30 days content
+Outcome: More visibility + inbound leads
 
 ---
 
-### 3. FAQ Auto-Reply Bot
-**Problem:** Teams answer the same questions repeatedly.  
-**Solution:** Use AI to detect intent and auto-reply to common questions on WhatsApp or Telegram.  
-**Outcome:** Fewer repetitive messages and faster customer support.
+### 3. FAQ Auto-Reply System
 
-**Typical stack:**
-- WhatsApp API / Telegram Bot
-- OpenAI API
-- Zapier / Make
+Problem: Same questions again and again
+Solution: AI detects intent + replies instantly
+Outcome: Saves time + improves response speed
 
 ---
 
-## Repository Structure
+## ⚙️ SYSTEM ARCHITECTURE
 
-Each demo should be organized like this:
+User → WhatsApp → FastAPI → AI Logic → Leads DB/Sheet → Auto Reply
 
-```text
-/whatsapp-lead-automation
-  README.md
-  screenshots/
-  workflow-diagram.png
-  demo-video-link.md
+---
 
-/content-auto-scheduler
-  README.md
-  screenshots/
-  workflow-diagram.png
-  demo-video-link.md
+## 🧪 LIVE DEMO (TEST)
 
-/faq-auto-reply-bot
-  README.md
-  screenshots/
-  workflow-diagram.png
-  demo-video-link.md
+Run:
+uvicorn app.main:app --reload --port 8000
+
+Open:
+http://127.0.0.1:8000/docs
+
+Test:
+POST /whatsapp
+
+{
+"name": "Ridhi",
+"message": "price for acne treatment"
+}
+
+---
+
+## 💰 HOW I HELP CLIENTS
+
+* Capture leads automatically
+* Reply instantly (even at night)
+* Reduce manual work
+* Increase conversions
+
+---
+
+## 🎯 OFFER
+
+"I set this up in 2–3 days
+One-time setup: ₹5,000 – ₹15,000"
+
+---
+
+## 👤 Author
+
+Ridhi Jain
+AI Automation Consultant

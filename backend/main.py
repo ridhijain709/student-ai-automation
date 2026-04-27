@@ -1,7 +1,17 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from backend.db import engine, Base
-from backend.routers import gmail, telegram, linkedin, whatsapp, resume, truthgrid, dashboard
+from backend.routers import (
+    dashboard,
+    gmail,
+    leads,
+    linkedin,
+    resume,
+    sheets,
+    telegram,
+    truthgrid,
+    whatsapp,
+)
 
 # Initialize database tables on startup
 def init_db():
@@ -18,8 +28,9 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Initialize DB
-init_db()
+@app.on_event("startup")
+def _startup():
+    init_db()
 
 @app.get("/health")
 def health_check():
@@ -33,6 +44,8 @@ app.include_router(whatsapp.router)
 app.include_router(resume.router)
 app.include_router(truthgrid.router)
 app.include_router(dashboard.router)
+app.include_router(leads.router)
+app.include_router(sheets.router)
 
 if __name__ == "__main__":
     import uvicorn

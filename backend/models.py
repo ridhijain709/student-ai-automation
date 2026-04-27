@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String, Text, DateTime, ForeignKey
+from sqlalchemy import Column, DateTime, Integer, String, Text
 from sqlalchemy.sql import func
 from backend.db import Base
 
@@ -62,4 +62,19 @@ class TruthGridReport(Base):
     weaknesses = Column(Text)
     next_steps = Column(Text)
     full_report = Column(Text)
+    created_at = Column(DateTime, default=func.now())
+
+
+class Lead(Base):
+    __tablename__ = "leads"
+
+    id = Column(Integer, primary_key=True, index=True)
+    name = Column(String, nullable=True)
+    phone = Column(String, nullable=True, index=True)
+    email = Column(String, nullable=True, index=True)
+    source = Column(String, default="unknown")  # whatsapp | web | referral | unknown
+    status = Column(String, default="new")  # new | contacted | qualified | lost | won
+    message = Column(Text, nullable=True)
+    tags = Column(String, nullable=True)  # comma-separated for demo simplicity
+
     created_at = Column(DateTime, default=func.now())
